@@ -13,6 +13,7 @@
   background: #fafafa;
 }
 
+/* タイトル */
 h1 {
   text-align: center;
   color: #c7000b;
@@ -26,12 +27,14 @@ h1 {
   margin-bottom: 16px;
 }
 
+/* 全体レイアウト */
 .grid {
   display: grid;
   grid-template-columns: 1fr 1.2fr 1fr;
   gap: 12px;
 }
 
+/* 左右カラム */
 .col {
   background: #fff;
   padding: 12px;
@@ -42,49 +45,65 @@ h1 {
 .col h2 {
   text-align: center;
   color: #c7000b;
-  margin-top: 0;
+  margin: 0 0 10px;
 }
 
+/* 中央カラム */
 .center {
-  text-align: center;
-  font-weight: bold;
-  border: none;
   background: none;
+  border: none;
+  font-weight: bold;
+  text-align: center;
 }
 
+/* 共通：1行の高さを完全統一 */
+input,
+.label,
+.result {
+  height: 36px;
+  display: flex;
+  align-items: center;
+  box-sizing: border-box;
+  margin: 6px 0;
+  font-size: 14px;
+}
+
+/* 入力欄 */
+input {
+  width: 100%;
+  padding: 0 6px;
+}
+
+/* 中央の項目名 */
+.label {
+  justify-content: center;
+  color: #555;
+}
+
+/* 価格表示 */
 .price {
   font-size: 18px;
   text-align: center;
   margin-bottom: 10px;
 }
 
-.label {
-  padding: 6px 0;
-  font-size: 14px;
-}
-
-input {
-  width: 100%;
-  margin: 6px 0;
-  padding: 6px;
-  font-size: 14px;
-}
-
+/* 割引後など */
 .result {
-  margin-top: 10px;
+  justify-content: center;
   font-weight: bold;
-  text-align: center;
+  white-space: nowrap;
 }
 
+/* 実質料金（強調） */
 .strong {
   font-size: 20px;
   color: #c7000b;
   border: 2px solid #c7000b;
-  padding: 8px;
-  border-radius: 6px;
   background: #fff5f5;
+  border-radius: 6px;
 }
 
+/* 差額表示 */
 .diff {
   text-align: center;
   margin: 20px 0;
@@ -93,6 +112,7 @@ input {
   color: #c7000b;
 }
 
+/* スマホ縦表示 */
 @media (max-width: 700px) {
   .grid {
     grid-template-columns: 1fr;
