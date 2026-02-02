@@ -220,17 +220,17 @@ h1 {
 
 /* ===== mini / irumo 用：逆三角形そのもの ===== */
 .mini-triangle {
-  position: absolute;
-  top: -28px;
-  left: 6px;
-
-  width: 90px;
-  height: 46px;
-
+  width: 72px;
+  height: 34px;
   background: #dff3ff;
   color: #000;
 
-  display: none; /* JSで表示制御 */
+.mini-triangle {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+
+  display: none; 
   flex-direction: column;
   justify-content: center;
   align-items: center;
@@ -240,21 +240,19 @@ h1 {
   z-index: 10;
 
   /* ▼ 逆三角形にする核心 */
-  clip-path: polygon(
-    50% 100%,
-    0 0,
-    100% 0
-  );
-}
+clip-path: polygon(
+  50% 85%,
+  8% 15%,
+  92% 15%
+);
 
-/* 中の input（他CSSの影響を完全カット） */
+/* 中の input*/
 .mini-triangle input {
   all: unset;
-  width: 26px;
-  text-align: center;
-  font-size: 13px;
-  border-bottom: 1px solid #555;
-  line-height: 1;
+  width: 22px;
+  text-align: right;
+  font-size: 15px;
+  font-weight: 600;
 }
 
 </style>
