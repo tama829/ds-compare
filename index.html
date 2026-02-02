@@ -203,6 +203,7 @@ h1 {
 /* 右用 */
 .balloon-right {
   right: -6px;
+  gap: 2px;
 }
 .balloon-right::after {
   right: 10px;
@@ -240,17 +241,21 @@ h1 {
 
   /* ▼ 逆三角形 */
   clip-path: polygon(
-    50% 43px,
+    50% 100%,
     0% 0%,
-    68px 0%
+    100% 0%
   );
 }
 
 /* 中の input */
 .mini-triangle input {
-  all: unset;
+  border: none;
+  background: transparent;
+  outline: none;
+
   width: 22px;
-  text-align: right;
+  text-align: center;
+  font-size: 13px;
 }
 
 
@@ -512,29 +517,9 @@ h1 {
   <!-- 右（条件付き） -->
   <div class="cell price-cell" id="poi-cell-r">
 
-<span class="balloon balloon-right" id="poi-balloon-r" style="display:none;">
-  <div style="display:flex; gap:4px; align-items:center;">
-    <input
-      type="number"
-      class="rate-input"
-      placeholder="00"
-      min="0"
-      max="99"
-      inputmode="numeric"
-      style="
-        width: 23px;
-        height: 22px;
-        font-size: 13px;
-        text-align: center;
-        padding: 0;
-        border: none;
-        background: transparent;
-        border-bottom: 1px solid #ccc;
-        font-family: "Noto Sans JP", sans-serif;
-      "
-    >
-    <span>%還元</span>
-  </div>
+<span class="balloon balloon-right" id="poi-balloon-r" style=display:none;">
+  <input type="number" class="rate-input" placeholder="00">
+  <span>%還元</span>
 </span>
 
     <!-- ポイ活じゃない時の「ー」 -->
