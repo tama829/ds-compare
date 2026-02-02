@@ -203,7 +203,6 @@ h1 {
 /* 右用 */
 .balloon-right {
   right: -6px;
-  gap: 2px;
 }
 .balloon-right::after {
   right: 10px;
@@ -217,50 +216,6 @@ h1 {
 
 .poi-row {
   margin-top: 20px;
-}
-
-/* ===== mini / irumo 用：逆三角形そのもの ===== */
-.mini-triangle {
-  position: absolute;
-  top: 4px;
-  left: 6px;
-
-  width: 68px;
-  height: 43px;
-  background: #dff3ff;
-  color: #000;
-
-  display: none;
-  flex-direction: row;
-  justify-content: center;
-  align-items: center;
-  gap: 2px;
-
-  font-size: 13px;
-  z-index: 10;
-
-  /* ▼ 逆三角形 */
-  clip-path: polygon(
-    50% 100%,
-    0% 0%,
-    100% 0%
-  );
-}
-
-/* 中の input */
-.mini-triangle input {
-  border: none;
-  background: transparent;
-  outline: none;
-
-  width: 22px;
-  text-align: center;
-  font-size: 13px;
-}
-
-
-.price-cell {
-  position: relative;
 }
 
 </style>
@@ -517,9 +472,29 @@ h1 {
   <!-- 右（条件付き） -->
   <div class="cell price-cell" id="poi-cell-r">
 
-<span class="balloon balloon-right" id="poi-balloon-r" style=display:none;">
-  <input type="number" class="rate-input" placeholder="00">
-  <span>%還元</span>
+<span class="balloon balloon-right" id="poi-balloon-r" style="display:none;">
+  <div style="display:flex; gap:4px; align-items:center;">
+    <input
+      type="number"
+      class="rate-input"
+      placeholder="00"
+      min="0"
+      max="99"
+      inputmode="numeric"
+      style="
+        width: 23px;
+        height: 22px;
+        font-size: 13px;
+        text-align: center;
+        padding: 0;
+        border: none;
+        background: transparent;
+        border-bottom: 1px solid #ccc;
+        font-family: "Noto Sans JP", sans-serif;
+      "
+    >
+    <span>%還元</span>
+  </div>
 </span>
 
     <!-- ポイ活じゃない時の「ー」 -->
@@ -570,24 +545,10 @@ h1 {
     <span>%還元</span>
   </div>
 
-<div class="cell price-cell" style="position:relative;">
-
-  <div class="mini-triangle" id="mini-rate-r">
-  <input
-  type="number"
-  class="mini-rate-input"
-  placeholder="00"
-  min="0"
-  max="99"
-  inputmode="numeric"
->
-  <span>%</span>
-</div>
-
-  <input type="number" class="r-point number-input" placeholder="ポイント入力">
-  <span class="yen">pt</span>
-</div>
-
+  <div class="cell price-cell">
+    <input type="number" class="r-point number-input" placeholder="ポイント入力">
+    <span class="yen">pt</span>
+  </div>
 </div>
 
 <!-- ドコモ光-->
@@ -731,13 +692,6 @@ function setPlanPrice(){
 
   const text = plan.options[plan.selectedIndex].text;
   const isPoi = text.includes("ポイ活");
-
-const isMiniIrumo =
-  text.includes("mini") || text.includes("irumo");
-
-  // =====mini irumo=====
-document.getElementById("mini-rate-r").style.display =
-  isMiniIrumo ? "flex" : "none";
 
   // ===== ポイ活特典 =====
   document.getElementById("poi-balloon-r").style.display = isPoi ? "block" : "none";
