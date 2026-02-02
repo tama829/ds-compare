@@ -609,16 +609,30 @@ h1 {
     <span class="yen">pt</span>
   </div>
   <div class="cell">ポイ活ファミリー特典</div>
-  <div class="cell price-cell">
-
-    <!-- ポイ活じゃない時の「ー」 -->
-    <span id="poi-dash-r" style="display:flex; align-items:center; color:#aaa;">
-      ー
-    </span>
-
-    <input type="number" class="r-point number-input" placeholder="ポイント入力">
-    <span class="yen">pt</span>
-  </div>
+<div class="cell price-cell">
+  <!-- ポイ活じゃない時 -->
+  <span
+    id="family-dash-r"
+    style="display:flex; align-items:center; color:#aaa;"
+  >
+    ー
+  </span>
+  <!-- ポイ活の時 -->
+  <input
+    type="number"
+    class="r-point number-input"
+    id="family-input-r"
+    placeholder="ポイント入力"
+    style="display:none;"
+  >
+  <span
+    class="yen"
+    id="family-yen-r"
+    style="display:none;"
+  >
+pt
+</span>
+</div>
 </div>
 
 <!-- その他ポイント-->
@@ -662,6 +676,14 @@ function setPlanPrice(){
   document.getElementById("poi-input-r").style.display = isPoi ? "block" : "none";
   document.getElementById("poi-yen-r").style.display = isPoi ? "block" : "none";
   document.getElementById("poi-dash-r").style.display = isPoi ? "none" : "flex";
+
+  calc();
+}
+
+  // ===== ポイ活ファミリー特典 =====
+  document.getElementById("family-input-r").style.display = isPoi ? "block" : "none";
+  document.getElementById("family-yen-r").style.display   = isPoi ? "block" : "none";
+  document.getElementById("family-dash-r").style.display  = isPoi ? "none"  : "flex";
 
   calc();
 }
