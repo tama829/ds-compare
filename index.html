@@ -85,6 +85,27 @@ h1 {
   color: #c7000b;
 }
 
+/* ===== 特別ヘッダー ===== */
+
+/* ポイ活MAX */
+.head-poimax {
+  border: 3px solid #c89932;
+  color: #c89932;
+  font-weight: 700;
+  background: #eec362;
+}
+
+/* プラン名 */
+.head-plan {
+  border: 3px solid #333;
+  background: #fff;
+}
+
+.head-plan select {
+  color: #333;
+  font-weight: 600;
+}
+
 /* プラン名*/
 .plan-title {
   font-family: "Noto Sans JP", sans-serif;
@@ -224,10 +245,10 @@ h1 {
 
 <!-- ===== ヘッダー ===== -->
 <div class="row">
-  <div class="cell header plan-title">ポイ活MAX</div>
-  <div class="cell header">項目</div>
+  <div class="cell header plan-title head-poimax">ポイ活MAX</div>
+  <div class="cell">項目</div>
 
-<div class="cell header">
+<div class="cell header head-plan">
   <select id="r-plan" class="plan-title" onchange="setPlanPrice()">
     <option value="">プラン選択</option>
     <option value="5698">ドコモMAX(〜1GB)</option>
