@@ -220,39 +220,45 @@ h1 {
 
 /* ===== mini / irumo 用：逆三角形そのもの ===== */
 .mini-triangle {
+  position: absolute;
+  top: 4px;
+  left: 6px;
+
   width: 72px;
   height: 34px;
   background: #dff3ff;
   color: #000;
 
-.mini-triangle {
-  position: absolute;
-  top: 4px;
-  left: 6px;
-
-  display: none; 
-  flex-direction: column;
+  display: none;
+  flex-direction: row;
   justify-content: center;
   align-items: center;
   gap: 2px;
 
-  font-size: 13px;
+  font-size: 15px;
+  font-weight: 600;
   z-index: 10;
 
-  /* ▼ 逆三角形にする核心 */
-clip-path: polygon(
-  50% 85%,
-  8% 15%,
-  92% 15%
-);
+  /* ▼ 逆三角形 */
+  clip-path: polygon(
+    50% 85%,
+    8% 15%,
+    92% 15%
+  );
+}
 
-/* 中の input*/
+/* 中の input */
 .mini-triangle input {
   all: unset;
   width: 22px;
   text-align: right;
   font-size: 15px;
   font-weight: 600;
+}
+
+
+.price-cell {
+  position: relative;
 }
 
 </style>
@@ -530,7 +536,7 @@ clip-path: polygon(
         font-family: "Noto Sans JP", sans-serif;
       "
     >
-    <span>%還元</span>
+    <span>%</span>
   </div>
 </span>
 
@@ -586,13 +592,13 @@ clip-path: polygon(
 
   <div class="mini-triangle" id="mini-rate-r">
   <input
-    type="number"
-    class="rate-input"
-    placeholder="00"
-    min="0"
-    max="99"
-    inputmode="numeric"
-  >
+  type="number"
+  class="mini-rate-input"
+  placeholder="00"
+  min="0"
+  max="99"
+  inputmode="numeric"
+>
   <span>%還元</span>
 </div>
 
