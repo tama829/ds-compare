@@ -660,7 +660,6 @@ pt
 <script>
 function n(value){return Number(value||0);}
 
-//基本料金計算
 function setPlanPrice(){
   const plan = document.getElementById("r-plan");
   const price = plan.value;
@@ -669,16 +668,11 @@ function setPlanPrice(){
   const text = plan.options[plan.selectedIndex].text;
   const isPoi = text.includes("ポイ活");
 
-  // 吹き出し
+  // ===== ポイ活特典 =====
   document.getElementById("poi-balloon-r").style.display = isPoi ? "block" : "none";
-
-  // 入力欄 or 「ー」
-  document.getElementById("poi-input-r").style.display = isPoi ? "block" : "none";
-  document.getElementById("poi-yen-r").style.display = isPoi ? "block" : "none";
-  document.getElementById("poi-dash-r").style.display = isPoi ? "none" : "flex";
-
-  calc();
-}
+  document.getElementById("poi-input-r").style.display   = isPoi ? "block" : "none";
+  document.getElementById("poi-yen-r").style.display     = isPoi ? "block" : "none";
+  document.getElementById("poi-dash-r").style.display    = isPoi ? "none"  : "flex";
 
   // ===== ポイ活ファミリー特典 =====
   document.getElementById("family-input-r").style.display = isPoi ? "block" : "none";
@@ -687,6 +681,9 @@ function setPlanPrice(){
 
   calc();
 }
+
+  // 吹き出し
+  document.getElementById("poi-balloon-r").style.display = isPoi ? "block" : "none";
 
 // 「その他」入力の表示切替
 function handleOther(select){
