@@ -218,49 +218,43 @@ h1 {
   margin-top: 20px;
 }
 
-/* ===== mini / irumo 用 逆三角 ===== */
+/* ===== mini / irumo 用：逆三角形そのもの ===== */
 .mini-triangle {
   position: absolute;
-  top: -22px;
+  top: -28px;
   left: 6px;
+
+  width: 90px;
+  height: 46px;
 
   background: #dff3ff;
   color: #000;
-  font-size: 13px;
 
-  padding: 4px 8px;
-  border-radius: 6px;
-
-  display: flex;
+  display: none; /* JSで表示制御 */
+  flex-direction: column;
+  justify-content: center;
   align-items: center;
-  gap: 4px;
+  gap: 2px;
 
-  z-index: 5;
-}
-
-/* 下向き三角 */
-.mini-triangle::after {
-  content: "";
-  position: absolute;
-  top: 100%;
-  left: 14px;
-
-  border: 6px solid transparent;
-  border-top-color: #dff3ff;
-}
-
-/* 中の input */
-.mini-triangle input {
-  width: 23px;
-  height: 20px;
   font-size: 13px;
-  text-align: center;
+  z-index: 10;
 
-  border: none;
-  border-bottom: 1px solid #666;
-  background: transparent;
-  outline: none;
-  color: #000;
+  /* ▼ 逆三角形にする核心 */
+  clip-path: polygon(
+    50% 100%,
+    0 0,
+    100% 0
+  );
+}
+
+/* 中の input（他CSSの影響を完全カット） */
+.mini-triangle input {
+  all: unset;
+  width: 26px;
+  text-align: center;
+  font-size: 13px;
+  border-bottom: 1px solid #555;
+  line-height: 1;
 }
 
 </style>
@@ -592,22 +586,17 @@ h1 {
 
 <div class="cell price-cell" style="position:relative;">
 
-  <!-- mini / irumo 用 逆三角形 -->
-  <div
-    id="mini-rate-r"
-    class="mini-triangle"
-    style="display:none;"
+  <div class="mini-triangle" id="mini-rate-r">
+  <input
+    type="number"
+    class="rate-input"
+    placeholder="00"
+    min="0"
+    max="99"
+    inputmode="numeric"
   >
-    <input
-      type="number"
-      class="rate-input"
-      placeholder="00"
-      min="0"
-      max="99"
-      inputmode="numeric"
-    >
-    <span>%還元</span>
-  </div>
+  <span>%還元</span>
+</div>
 
   <input type="number" class="r-point number-input" placeholder="ポイント入力">
   <span class="yen">pt</span>
@@ -749,16 +738,20 @@ pt
 <script>
 function n(value){return Number(value||0);}
 
-function setPlanPrice() {
+function setPlanPrice(){
   const plan = document.getElementById("r-plan");
   const price = plan.value;
   document.getElementById("r-base").value = price || "";
 
   const text = plan.options[plan.selectedIndex].text;
-
   const isPoi = text.includes("ポイ活");
-  const isMiniIrumo =
-    text.includes("mini") || text.includes("irumo");
+
+const isMiniIrumo =
+  text.includes("mini") || text.includes("irumo");
+
+  // =====mini irumo=====
+document.getElementById("mini-rate-r").style.display =
+  isMiniIrumo ? "flex" : "none";
 
   // ===== ポイ活特典 =====
   document.getElementById("poi-balloon-r").style.display = isPoi ? "block" : "none";
@@ -770,10 +763,6 @@ function setPlanPrice() {
   document.getElementById("family-input-r").style.display = isPoi ? "block" : "none";
   document.getElementById("family-yen-r").style.display   = isPoi ? "block" : "none";
   document.getElementById("family-dash-r").style.display  = isPoi ? "none"  : "flex";
-
-  // mini / irumo 専用表示
-  document.getElementById("mini-rate-r").style.display =
-    isMiniIrumo ? "flex" : "none";
 
   calc();
 }
